@@ -24,7 +24,7 @@ static char	*get_leftover(char *leftover, char *str, size_t len)
 		if (!leftover)
 			return (NULL);
 		i = 0;
-		while (lo_size--)
+		while (lo_size-- && str[len + i])
 		{
 			leftover[i] = str[len + i];
 			i++;
@@ -52,6 +52,7 @@ static size_t	lo_len(char *lo, char *str)
 			len++;
 		}
 	}
+	str[len] = 0;
 	free(lo);
 	if (check)
 		len = BUFFER_SIZE;
