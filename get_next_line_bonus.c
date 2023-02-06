@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 21:05:52 by fedmarti          #+#    #+#             */
-/*   Updated: 2022/11/04 18:59:49 by fedmarti         ###   ########.fr       */
+/*   Created: 2022/11/14 15:12:32 by fedmarti          #+#    #+#             */
+/*   Updated: 2022/11/14 15:12:36 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*r_null(char **str, char **leftover)
 {
@@ -97,19 +97,19 @@ int	loop(int fd, char **str, char **leftover)
 
 char	*get_next_line(int fd)
 {
-	static char	*leftover;
+	static char	*leftover[1024];
 	char		*str;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (r_null(NULL, &leftover));
-	str = ft_strjoin(leftover, "");
+		return (r_null(NULL, &leftover[fd]));
+	str = ft_strjoin(leftover[fd], "");
 	if (!str)
-		return (r_null(&str, &leftover));
-	ft_reset(&leftover);
-	if (!loop(fd, &str, &leftover))
-		return (r_null(&str, &leftover));
+		return (r_null(&str, &leftover[fd]));
+	ft_reset(&leftover[fd]);
+	if (!loop(fd, &str, &leftover[fd]))
+		return (r_null(&str, &leftover[fd]));
 	if (!*str)
-		return (r_null(&str, &leftover));
+		return (r_null(&str, &leftover[fd]));
 	return (str);
 }
 /*
