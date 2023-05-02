@@ -26,6 +26,5 @@ int		check(char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char *s1, char *s2);
 void	ft_reset(char **p);
-int		ft_strlen(const char *str);
 
 #endif
