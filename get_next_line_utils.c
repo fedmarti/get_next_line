@@ -13,7 +13,7 @@
 #include "get_next_line.h"
 #include <limits.h>
 
-int	ft_strlen(const char *str)
+static int	ft_strlen(const char *str)
 {
 	int	len;
 
